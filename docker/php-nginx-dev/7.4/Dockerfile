@@ -11,7 +11,7 @@ ENV WEB_DOCUMENT_ROOT=/app \
     WEB_PHP_TIMEOUT=600 \
     WEB_PHP_SOCKET=""
 ENV WEB_PHP_SOCKET=127.0.0.1:9000
-ENV WEB_NO_CACHE_PATTERN="\.(css|js|gif|png|jpg|svg|json|xml)$"
+ENV WEB_NO_CACHE_PATTERN="\.(css|js|gif|png|jpg|svg|json|xml)$"chmod +s /sbin/gosu
 
 COPY conf/ /opt/docker/
 
@@ -24,6 +24,7 @@ RUN set -x \
         blackfire-agent \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug \
+    && chmod +s /sbin/gosu \
     # Enable php development services
     && docker-service enable syslog \
     && docker-service enable postfix \
